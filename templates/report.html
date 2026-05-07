@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% block title %}Printable report - MedExpert{% endblock %}
 {% block extra_css %}
+<script>
+  // Force the report page to stay in light mode regardless of dashboard theme.
+  document.documentElement.setAttribute("data-theme", "light");
+</script>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/print.css') }}">
 {% endblock %}
 {% block content %}
