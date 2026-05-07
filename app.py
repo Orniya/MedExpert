@@ -3,17 +3,20 @@
 from __future__ import annotations
 
 import copy
+import json
 import os
 from datetime import datetime
 from pathlib import Path
 
-from flask import Flask, redirect, render_template, request, session, url_for
+from flask import Flask, jsonify, redirect, render_template, request, session, url_for
 
 from engine.diagnosis import diagnose
 from engine.knowledge_base import load_knowledge_base, symptoms_by_category
 from engine.nlp_utils import extract_symptoms_from_text
 
 APP_ROOT = Path(__file__).resolve().parent
+DEBUG_LOG_PATH = APP_ROOT.parent / "debug-42d9a8.log"
+DEBUG_LOG_PATH_ALT = APP_ROOT / "debug-42d9a8.log"
 
 app = Flask(
     __name__,
@@ -26,6 +29,16 @@ app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "dev-only-change-me")
 def _load_disclaimer() -> str:
     p = APP_ROOT / "data" / "disclaimer.txt"
     return p.read_text(encoding="utf-8")
+
+
+def _append_debug_log(payload: dict) -> None:
+    line = json.dumps(payload, ensure_ascii=True) + "\n"
+    for p in (DEBUG_LOG_PATH, DEBUG_LOG_PATH_ALT):
+        try:
+            with p.open("a", encoding="utf-8") as f:
+                f.write(line)
+        except Exception:
+            continue
 
 
 def _age_band(age: int | None) -> str:
@@ -47,6 +60,17 @@ def inject_globals():
 
 @app.route("/")
 def index():
+    _append_debug_log(
+        {
+            "sessionId": "42d9a8",
+            "runId": "run1",
+            "hypothesisId": "H5",
+            "location": "app.py:index",
+            "message": "index route hit",
+            "data": {"path": "/"},
+            "timestamp": int(datetime.now().timestamp() * 1000),
+        }
+    )
     symptoms, diseases = load_knowledge_base()
     grouped = symptoms_by_category(symptoms)
     category_titles = {
@@ -143,7 +167,29 @@ def diagnose_route():
 def report():
     data = session.get("last_report")
     if not data:
+        _append_debug_log(
+            {
+                "sessionId": "42d9a8",
+                "runId": "run1",
+                "hypothesisId": "H6",
+                "location": "app.py:report",
+                "message": "report route hit but no report in session",
+                "data": {"path": "/report"},
+                "timestamp": int(datetime.now().timestamp() * 1000),
+            }
+        )
         return redirect(url_for("index"))
+    _append_debug_log(
+        {
+            "sessionId": "42d9a8",
+            "runId": "run1",
+            "hypothesisId": "H6",
+            "location": "app.py:report",
+            "message": "report route hit with session report",
+            "data": {"path": "/report", "resultsCount": len(data.get("results") or [])},
+            "timestamp": int(datetime.now().timestamp() * 1000),
+        }
+    )
     symptoms, _ = load_knowledge_base()
     labels = {s.id: s.label for s in symptoms}
     patient = data["patient"]
@@ -164,6 +210,35 @@ def report():
         disclaimer=disclaimer,
         generated_at=data.get("generated_at") or datetime.now().strftime("%Y-%m-%d %H:%M"),
     )
+
+
+@app.route("/_debug/client-log", methods=["POST"])
+def debug_client_log():
+    payload = request.get_json(silent=True) or {}
+    payload.setdefault("sessionId", "42d9a8")
+    payload.setdefault("timestamp", int(datetime.now().timestamp() * 1000))
+    _append_debug_log(payload)
+    return jsonify({"ok": True})
+
+
+@app.route("/_debug/probe", methods=["GET"])
+def debug_probe():
+    payload = {
+        "sessionId": "42d9a8",
+        "runId": "run1",
+        "hypothesisId": "H7",
+        "location": "app.py:_debug/probe",
+        "message": "probe route hit",
+        "data": {
+            "cwd": os.getcwd(),
+            "appRoot": str(APP_ROOT),
+            "logPathPrimary": str(DEBUG_LOG_PATH),
+            "logPathAlt": str(DEBUG_LOG_PATH_ALT),
+        },
+        "timestamp": int(datetime.now().timestamp() * 1000),
+    }
+    _append_debug_log(payload)
+    return jsonify(payload["data"])
 
 
 if __name__ == "__main__":

@@ -9,6 +9,11 @@
     (function () {
       const saved = localStorage.getItem("medexpert-theme");
       const theme = saved || "light";
+      // #region agent log
+      const payload = {sessionId:'42d9a8',runId:'run1',hypothesisId:'H1',location:'templates/base.html:11',message:'initial theme bootstrap',data:{savedTheme:saved,appliedTheme:theme,path:window.location.pathname},timestamp:Date.now()};
+      fetch('/_debug/client-log',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(()=>{});
+      fetch('http://127.0.0.1:7259/ingest/57fa0c5d-e67f-4a5e-9280-52ed5e7082e8',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'42d9a8'},body:JSON.stringify(payload)}).catch(()=>{});
+      // #endregion
       document.documentElement.setAttribute("data-theme", theme);
     })();
   </script>
