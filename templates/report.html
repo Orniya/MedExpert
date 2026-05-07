@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Printable report - MedExpert{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/print.css') }}">
+{% endblock %}
+{% block content %}
+<section class="report-header">
+  <h1>Clinical Decision Support Report</h1>
+  <p class="meta">Generated at {{ generated_at }} | Rule-based educational expert system</p>
+</section>
+
+<section class="report-kpi-grid">
+  <article class="card kpi">
+    <p class="kpi-label">Primary Impression</p>
+    <p class="kpi-value">{{ patient.primary_impression }}</p>
+  </article>
+  <article class="card kpi">
+    <p class="kpi-label">Primary Confidence</p>
+    <p class="kpi-value">{{ "%.1f"|format(patient.primary_confidence) }}%</p>
+  </article>
+  <article class="card kpi">
+    <p class="kpi-label">Patient Profile</p>
+    <p class="kpi-value">{{ patient.age_band }}</p>
+  </article>
+  <article class="card kpi">
+    <p class="kpi-label">Findings Captured</p>
+    <p class="kpi-value">{{ patient.symptom_total }}</p>
+  </article>
+</section>
+
+<section class="card">
+  <h2>Patient Overview</h2>
+  <p><strong>Age:</strong> {{ patient.age if patient.age is not none else "Not provided" }} ({{ patient.age_band }})</p>
+  <p><strong>Gender:</strong> {{ patient.gender or "Not provided" }}</p>
+  {% if patient.free_text %}<p><strong>Free text notes:</strong> {{ patient.free_text }}</p>{% endif %}
+  <p><strong>Symptoms considered in inference:</strong></p>
+  <ul>{% for s in patient.symptom_labels %}<li>{{ s }}</li>{% else %}<li>No symptoms listed</li>{% endfor %}</ul>
+</section>
+
+<section class="card">
+  <h2>Differential Diagnosis Summary (Top 3)</h2>
+  {% for r in results %}
+  <article class="report-diagnosis">
+    <h3>{{ loop.index }}. {{ r.disease_name }} <span class="badge severity-{{ r.severity|lower }}">{{ r.severity }}</span></h3>
+    <p><strong>Confidence score:</strong> {{ "%.1f"|format(r.confidence) }}% | <strong>Severity class:</strong> {{ r.severity }}</p>
+    <p><strong>Clinical fit summary:</strong> Required criteria met = {{ r.matched_required|length }}, supportive findings = {{ r.matched_common|length }}, missing critical criteria = {{ r.missing_required|length }}.</p>
+    <p><strong>Matched required symptoms:</strong> {{ r.matched_required|join(', ') if r.matched_required else 'None' }}</p>
+    <p><strong>Matched supportive symptoms:</strong> {{ r.matched_common|join(', ') if r.matched_common else 'None' }}</p>
+    <p><strong>Missing required symptoms:</strong> {{ r.missing_required|join(', ') if r.missing_required else 'None' }}</p>
+    <p><strong>Basic non-prescriptive support suggestions:</strong></p>
+    <ul>{% for t in r.treatment %}<li>{{ t }}</li>{% endfor %}</ul>
+  </article>
+  {% else %}
+  <p>No diagnosis candidates were produced.</p>
+  {% endfor %}
+</section>
+
+<div class="actions no-print">
+  <a href="{{ url_for('index') }}" class="btn secondary">Back to form</a>
+  <button class="btn primary" onclick="window.print()">Print this report</button>
+</div>
+{% endblock %}

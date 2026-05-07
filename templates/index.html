@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Symptom intake - MedExpert{% endblock %}
+{% block content %}
+<section class="hero">
+  <h1>Clinical Decision Support Workspace</h1>
+  <p class="lead">Capture patient findings, then execute <strong>forward</strong> and <strong>backward</strong> chaining over a curated knowledge base of <strong>{{ disease_count }}</strong> diseases.</p>
+  <p class="meta">Catalog scale: {{ symptom_count }} symptoms | Structured triage-ready interface.</p>
+</section>
+
+<section class="dashboard-metrics">
+  <article class="card metric-card">
+    <p class="kpi-label">Knowledge Base Coverage</p>
+    <p class="kpi-value">{{ disease_count }} diseases</p>
+  </article>
+  <article class="card metric-card">
+    <p class="kpi-label">Symptom Dictionary</p>
+    <p class="kpi-value">{{ symptom_count }} mapped findings</p>
+  </article>
+  <article class="card metric-card">
+    <p class="kpi-label">Inference Engines</p>
+    <p class="kpi-value">Forward + Backward</p>
+  </article>
+  <article class="card metric-card">
+    <p class="kpi-label">Output Mode</p>
+    <p class="kpi-value">Top 3 Ranked Differentials</p>
+  </article>
+</section>
+
+<form class="intake-form" method="post" action="{{ url_for('diagnose_route') }}" id="intake-form">
+  <fieldset class="card card-highlight">
+    <legend>Patient context</legend>
+    <div class="row">
+      <label>Age (optional)
+        <input type="number" name="age" min="0" max="120" placeholder="e.g. 34">
+      </label>
+      <label>Gender (optional)
+        <select name="gender">
+          <option value="">-</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </label>
+    </div>
+  </fieldset>
+
+  <fieldset class="card">
+    <legend>Describe in your own words</legend>
+    <label for="free_text">Other symptoms or details</label>
+    <textarea id="free_text" name="free_text" rows="3" placeholder="e.g. exhausted, sore throat, can't smell anything"></textarea>
+  </fieldset>
+
+  <div class="card filter-bar">
+    <label for="symptom-filter">Filter symptom list</label>
+    <input type="search" id="symptom-filter" placeholder="Type to filter..." autocomplete="off">
+  </div>
+
+  {% for cat, items in grouped_symptoms.items() %}
+  <fieldset class="card symptom-group" data-category="{{ cat }}">
+    <legend>{{ category_titles.get(cat, cat|replace('_', ' ')|title) }}</legend>
+    <div class="symptom-grid">
+      {% for s in items %}
+      <label class="symptom-item" data-label="{{ (s.label ~ ' ' ~ (s.synonyms|join(' ')))|lower }}">
+        <input type="checkbox" name="symptoms" value="{{ s.id }}">
+        <span>{{ s.label }}</span>
+      </label>
+      {% endfor %}
+    </div>
+  </fieldset>
+  {% endfor %}
+
+  <div class="actions">
+    <button type="submit" class="btn primary">Run inference</button>
+    <button type="reset" class="btn secondary">Clear form</button>
+  </div>
+</form>
+
+{% endblock %}

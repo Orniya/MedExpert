@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}Diagnosis results - MedExpert{% endblock %}
+{% block content %}
+<section class="hero">
+  <h1>Top 3 Possible Diagnoses</h1>
+  <p class="meta">Inference completed with {{ meta.forward_rules_fired }} fired rules from {{ meta.symptom_count }} patient findings.</p>
+  {% if meta.red_flag_escalation %}
+  <p class="alert urgent">Red-flag pattern detected. Severity has been escalated to Urgent for safety in this educational demo.</p>
+  {% endif %}
+</section>
+
+<section class="results-overview">
+  <article class="card metric-card">
+    <p class="kpi-label">Candidates Returned</p>
+    <p class="kpi-value">{{ results|length }}</p>
+  </article>
+  <article class="card metric-card">
+    <p class="kpi-label">Rules Fired</p>
+    <p class="kpi-value">{{ meta.forward_rules_fired }}</p>
+  </article>
+  <article class="card metric-card">
+    <p class="kpi-label">Findings Processed</p>
+    <p class="kpi-value">{{ patient_symptoms|length }}</p>
+  </article>
+  <article class="card metric-card">
+    <p class="kpi-label">Risk Escalation</p>
+    <p class="kpi-value">{{ "Yes" if meta.red_flag_escalation else "No" }}</p>
+  </article>
+</section>
+
+<section class="card patient-context card-highlight">
+  <h2>Patient Intake Snapshot</h2>
+  <p><strong>Age:</strong> {{ age if age is not none else "Not provided" }} | <strong>Gender:</strong> {{ gender or "Not provided" }} | <strong>Symptoms captured:</strong> {{ patient_symptoms|length }}</p>
+  {% if free_text %}<p><strong>Free text:</strong> {{ free_text }}</p>{% endif %}
+  <p><strong>Documented Findings:</strong></p>
+  <ul class="pill-list">
+    {% for sid in patient_symptoms %}
+      <li>{{ symptom_labels.get(sid, sid) }}</li>
+    {% else %}
+      <li>No symptoms selected</li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% if results %}
+  {% for r in results %}
+  <article class="card diagnosis-card">
+    <div class="diag-head">
+      <h2>{{ loop.index }}. {{ r.disease_name }}</h2>
+      <span class="badge severity-{{ r.severity|lower }}">{{ r.severity }}</span>
+    </div>
+    <div class="confidence-wrap">
+      <div class="confidence-bar"><span style="width: {{ r.confidence }}%"></span></div>
+      <p><strong>Confidence:</strong> {{ "%.1f"|format(r.confidence) }}%</p>
+      <p class="meta">Risk modifiers - Age: {{ "%.2f"|format(r.age_modifier) }}, Gender: {{ "%.2f"|format(r.gender_modifier) }}</p>
+    </div>
+
+    <div class="diag-grid">
+      <div>
+        <h3>Core Criteria Met</h3>
+        <ul>{% for x in r.matched_required %}<li>{{ x }}</li>{% else %}<li>None</li>{% endfor %}</ul>
+      </div>
+      <div>
+        <h3>Supportive Findings</h3>
+        <ul>{% for x in r.matched_common %}<li>{{ x }}</li>{% else %}<li>None</li>{% endfor %}</ul>
+      </div>
+      <div>
+        <h3>Missing Critical Criteria</h3>
+        <ul>{% for x in r.missing_required %}<li>{{ x }}</li>{% else %}<li>None</li>{% endfor %}</ul>
+      </div>
+      <div>
+        <h3>Suggested Supportive Actions</h3>
+        <ul>{% for x in r.treatment %}<li>{{ x }}</li>{% else %}<li>No suggestion listed</li>{% endfor %}</ul>
+      </div>
+    </div>
+
+    <details>
+      <summary>Backward-chaining reasoning trace</summary>
+      <pre class="trace">{% for line in r.backward_proof_lines %}{{ line }}
+{% endfor %}</pre>
+    </details>
+  </article>
+  {% endfor %}
+{% else %}
+  <section class="card">
+    <h2>No diagnosis candidates found</h2>
+    <p>Try selecting more symptoms or adding details in free text.</p>
+  </section>
+{% endif %}
+
+<div class="actions">
+  <a href="{{ url_for('index') }}" class="btn secondary">New assessment</a>
+  <a href="{{ url_for('report') }}" class="btn primary">Printable report</a>
+</div>
+{% endblock %}

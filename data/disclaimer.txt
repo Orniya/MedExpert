@@ -1,0 +1,13 @@
+MEDICAL DISCLAIMER
+
+This software is an educational demonstration of rule-based expert systems for a
+Fundamentals of Artificial Intelligence course. It is NOT a medical device,
+NOT a substitute for professional medical advice, diagnosis, or treatment, and
+must NOT be used for clinical decision-making.
+
+Always seek the advice of a qualified health provider with any questions about
+a medical condition. If you think you may have a medical emergency, call your
+local emergency number immediately.
+
+Treatment suggestions shown here are general, non-prescriptive wellness guidance
+only and do not constitute medical care.

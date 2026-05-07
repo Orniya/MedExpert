@@ -1,0 +1,36 @@
+@media print {
+  .site-header,
+  .site-footer,
+  .no-print,
+  .actions {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 12pt;
+  }
+  .card {
+    border: 1px solid #777;
+    box-shadow: none;
+    page-break-inside: avoid;
+    margin-bottom: 0.75rem;
+  }
+  .report-diagnosis {
+    page-break-inside: avoid;
+    margin-bottom: 0.8rem;
+  }
+  .trace,
+  .disclaimer-text {
+    border: 1px solid #999;
+    background: #fff;
+  }
+  .report-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.4rem;
+  }
+  .kpi-value {
+    font-size: 12pt;
+  }
+}

@@ -1,0 +1,1214 @@
+[
+  {
+    "id": "influenza",
+    "name": "Influenza (Flu)",
+    "symptoms": {
+      "required": [
+        "fever",
+        "fatigue"
+      ],
+      "common": [
+        "cough",
+        "sore_throat",
+        "muscle_aches",
+        "headache"
+      ],
+      "rare": [
+        "nausea",
+        "diarrhea",
+        "chills"
+      ]
+    },
+    "severity": "Moderate",
+    "risk_modifiers": {
+      "age": {
+        "lte_5": 1.15,
+        "gte_65": 1.2
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "Rest at home",
+      "Increase fluids",
+      "Acetaminophen or ibuprofen for fever/aches if appropriate for you",
+      "Seek urgent care if breathing is difficult or symptoms worsen"
+    ]
+  },
+  {
+    "id": "common_cold",
+    "name": "Common Cold (Viral URI)",
+    "symptoms": {
+      "required": [
+        "runny_nose",
+        "nasal_congestion"
+      ],
+      "common": [
+        "sore_throat",
+        "cough",
+        "sneezing",
+        "fatigue"
+      ],
+      "rare": [
+        "low_grade_fever"
+      ]
+    },
+    "severity": "Minor",
+    "risk_modifiers": {
+      "age": {
+        "lte_12": 1.05
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "Saline nasal rinse",
+      "Warm fluids",
+      "Rest",
+      "OTC decongestants only if safe for your health conditions"
+    ]
+  },
+  {
+    "id": "covid19",
+    "name": "COVID-19 (Possible)",
+    "symptoms": {
+      "required": [
+        "fever",
+        "cough"
+      ],
+      "common": [
+        "fatigue",
+        "loss_of_smell",
+        "loss_of_taste",
+        "sore_throat",
+        "headache",
+        "muscle_aches"
+      ],
+      "rare": [
+        "shortness_of_breath",
+        "confusion"
+      ]
+    },
+    "severity": "Moderate",
+    "risk_modifiers": {
+      "age": {
+        "gte_65": 1.25
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "Isolate per local guidance",
+      "Hydration and rest",
+      "Monitor oxygen if available",
+      "Seek medical care for worsening breathing or persistent high fever"
+    ]
+  },
+  {
+    "id": "pneumonia",
+    "name": "Pneumonia (Possible)",
+    "symptoms": {
+      "required": [
+        "fever",
+        "cough"
+      ],
+      "common": [
+        "shortness_of_breath",
+        "fatigue",
+        "chest_pain",
+        "sputum_production",
+        "chills"
+      ],
+      "rare": [
+        "confusion"
+      ]
+    },
+    "severity": "Urgent",
+    "risk_modifiers": {
+      "age": {
+        "lte_5": 1.2,
+        "gte_65": 1.3
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "Seek medical evaluation promptly",
+      "Rest and fluids",
+      "Do not delay care if breathing is labored or oxygen feels low"
+    ]
+  },
+  {
+    "id": "bronchitis",
+    "name": "Acute Bronchitis",
+    "symptoms": {
+      "required": [
+        "cough"
+      ],
+      "common": [
+        "fatigue",
+        "chest_pain",
+        "sputum_production",
+        "sore_throat"
+      ],
+      "rare": [
+        "low_grade_fever"
+      ]
+    },
+    "severity": "Minor",
+    "risk_modifiers": {
+      "age": {
+        "gte_65": 1.1
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "Humidified air",
+      "Honey for cough if age-appropriate",
+      "Avoid smoke",
+      "See clinician if cough lasts >3 weeks or fever is high"
+    ]
+  },
+  {
+    "id": "asthma_exacerbation",
+    "name": "Asthma Exacerbation (Possible)",
+    "symptoms": {
+      "required": [
+        "wheezing",
+        "shortness_of_breath"
+      ],
+      "common": [
+        "cough",
+        "chest_pain",
+        "fatigue",
+        "exercise_wheeze"
+      ],
+      "rare": []
+    },
+    "severity": "Urgent",
+    "risk_modifiers": {
+      "age": {
+        "lte_12": 1.2,
+        "gte_65": 1.1
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "Use prescribed rescue inhaler as directed",
+      "Seek emergency care if not improving within minutes",
+      "Avoid triggers"
+    ]
+  },
+  {
+    "id": "sinusitis",
+    "name": "Acute Sinusitis",
+    "symptoms": {
+      "required": [
+        "nasal_congestion",
+        "sinus_pressure"
+      ],
+      "common": [
+        "headache",
+        "fatigue",
+        "sore_throat",
+        "cough"
+      ],
+      "rare": [
+        "fever"
+      ]
+    },
+    "severity": "Minor",
+    "risk_modifiers": {
+      "age": {},
+      "gender": {}
+    },
+    "treatment": [
+      "Saline irrigation",
+      "Warm compresses",
+      "Analgesics if appropriate",
+      "Medical review if >10 days or severe symptoms"
+    ]
+  },
+  {
+    "id": "strep_throat",
+    "name": "Strep Throat (Possible)",
+    "symptoms": {
+      "required": [
+        "sore_throat",
+        "fever"
+      ],
+      "common": [
+        "swollen_lymph_nodes",
+        "tonsillar_exudate",
+        "headache",
+        "nausea"
+      ],
+      "rare": [
+        "rash"
+      ]
+    },
+    "severity": "Moderate",
+    "risk_modifiers": {
+      "age": {
+        "lte_15": 1.15
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "Rapid strep test / throat culture by clinician",
+      "Fluids and soft foods",
+      "Avoid self-starting antibiotics without evaluation"
+    ]
+  },
+  {
+    "id": "tonsillitis",
+    "name": "Tonsillitis (Viral or Bacterial)",
+    "symptoms": {
+      "required": [
+        "sore_throat",
+        "fever"
+      ],
+      "common": [
+        "tonsillar_exudate",
+        "swollen_lymph_nodes",
+        "ear_pain"
+      ],
+      "rare": [
+        "voice_change"
+      ]
+    },
+    "severity": "Moderate",
+    "risk_modifiers": {
+      "age": {
+        "lte_15": 1.1
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "Warm salt gargles",
+      "Fluids",
+      "Medical evaluation if severe pain, drooling, or difficulty swallowing"
+    ]
+  },
+  {
+    "id": "otitis_media",
+    "name": "Otitis Media (Ear Infection)",
+    "symptoms": {
+      "required": [
+        "ear_pain",
+        "fever"
+      ],
+      "common": [
+        "fatigue",
+        "hearing_muffled"
+      ],
+      "rare": []
+    },
+    "severity": "Moderate",
+    "risk_modifiers": {
+      "age": {
+        "lte_5": 1.2
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "Pain relief as advised by clinician",
+      "Often observed vs antibiotics depending on age/severity",
+      "Follow-up if symptoms persist"
+    ]
+  },
+  {
+    "id": "allergic_rhinitis",
+    "name": "Allergic Rhinitis",
+    "symptoms": {
+      "required": [
+        "sneezing",
+        "runny_nose"
+      ],
+      "common": [
+        "nasal_itch",
+        "nasal_congestion",
+        "itching"
+      ],
+      "rare": [
+        "fatigue"
+      ]
+    },
+    "severity": "Minor",
+    "risk_modifiers": {
+      "age": {
+        "lte_30": 1.05
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "Allergen avoidance",
+      "Non-sedating antihistamines if appropriate",
+      "Nasal saline",
+      "Discuss persistent symptoms with clinician"
+    ]
+  },
+  {
+    "id": "gastroenteritis",
+    "name": "Viral Gastroenteritis",
+    "symptoms": {
+      "required": [
+        "nausea",
+        "diarrhea"
+      ],
+      "common": [
+        "vomiting",
+        "abdominal_pain",
+        "fatigue",
+        "fever"
+      ],
+      "rare": [
+        "muscle_aches"
+      ]
+    },
+    "severity": "Moderate",
+    "risk_modifiers": {
+      "age": {
+        "lte_5": 1.2,
+        "gte_65": 1.15
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "Oral rehydration solution",
+      "Small frequent sips",
+      "BRAT-style bland foods as tolerated",
+      "Seek care for signs of severe dehydration or blood in stool"
+    ]
+  },
+  {
+    "id": "food_poisoning",
+    "name": "Foodborne Illness",
+    "symptoms": {
+      "required": [
+        "vomiting",
+        "diarrhea"
+      ],
+      "common": [
+        "abdominal_pain",
+        "nausea",
+        "fever",
+        "dehydration"
+      ],
+      "rare": [
+        "blood_in_stool"
+      ]
+    },
+    "severity": "Moderate",
+    "risk_modifiers": {
+      "age": {
+        "gte_65": 1.1
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "Hydration priority",
+      "Rest",
+      "Seek care if high fever, bloody diarrhea, or inability to keep fluids down"
+    ]
+  },
+  {
+    "id": "appendicitis",
+    "name": "Appendicitis (Emergency Possible)",
+    "symptoms": {
+      "required": [
+        "abdominal_pain",
+        "right_lower_quadrant_pain"
+      ],
+      "common": [
+        "nausea",
+        "vomiting",
+        "fever",
+        "loss_of_appetite"
+      ],
+      "rare": []
+    },
+    "severity": "Urgent",
+    "risk_modifiers": {
+      "age": {
+        "lte_30": 1.1
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "Emergency medical evaluation \u2014 surgical assessment may be needed",
+      "Do not eat or drink if heading to ER unless instructed"
+    ]
+  },
+  {
+    "id": "gerd",
+    "name": "GERD (Acid Reflux)",
+    "symptoms": {
+      "required": [
+        "heartburn"
+      ],
+      "common": [
+        "acid_reflux",
+        "cough",
+        "sore_throat",
+        "bloating"
+      ],
+      "rare": [
+        "chest_pain"
+      ]
+    },
+    "severity": "Minor",
+    "risk_modifiers": {
+      "age": {
+        "gte_40": 1.08
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "Smaller meals",
+      "Elevate head of bed",
+      "Avoid late eating",
+      "Discuss PPI/H2 options with clinician if frequent"
+    ]
+  },
+  {
+    "id": "ibs",
+    "name": "Irritable Bowel Syndrome (Pattern)",
+    "symptoms": {
+      "required": [
+        "abdominal_pain",
+        "bloating"
+      ],
+      "common": [
+        "diarrhea",
+        "constipation",
+        "nausea"
+      ],
+      "rare": [
+        "fatigue"
+      ]
+    },
+    "severity": "Minor",
+    "risk_modifiers": {
+      "age": {
+        "lte_50": 1.05
+      },
+      "gender": {
+        "female": 1.08
+      }
+    },
+    "treatment": [
+      "Diet diary",
+      "Fiber adjustment",
+      "Stress management",
+      "Formal diagnosis and management plan with clinician"
+    ]
+  },
+  {
+    "id": "hypertension",
+    "name": "Hypertension (Possible / Uncontrolled)",
+    "symptoms": {
+      "required": [
+        "blood_pressure_elevated"
+      ],
+      "common": [
+        "headache",
+        "dizziness",
+        "blurred_vision"
+      ],
+      "rare": [
+        "nosebleed"
+      ]
+    },
+    "severity": "Moderate",
+    "risk_modifiers": {
+      "age": {
+        "gte_65": 1.2
+      },
+      "gender": {
+        "male": 1.05
+      }
+    },
+    "treatment": [
+      "Home BP monitoring",
+      "Low-sodium diet",
+      "Exercise as tolerated",
+      "Follow-up for medication titration \u2014 not DIY"
+    ]
+  },
+  {
+    "id": "angina_pectoris",
+    "name": "Angina (Possible)",
+    "symptoms": {
+      "required": [
+        "chest_pain"
+      ],
+      "common": [
+        "shortness_of_breath",
+        "jaw_pain",
+        "arm_pain",
+        "cold_sweat"
+      ],
+      "rare": [
+        "nausea"
+      ]
+    },
+    "severity": "Urgent",
+    "risk_modifiers": {
+      "age": {
+        "gte_55": 1.15,
+        "gte_65": 1.2
+      },
+      "gender": {
+        "male": 1.08
+      }
+    },
+    "treatment": [
+      "If symptoms are new, severe, or last >15 minutes, seek emergency care",
+      "Do not drive yourself",
+      "Use prescribed nitroglycerin only if already prescribed"
+    ]
+  },
+  {
+    "id": "myocardial_infarction",
+    "name": "Myocardial Infarction (Heart Attack \u2014 Emergency)",
+    "symptoms": {
+      "required": [
+        "chest_pain",
+        "shortness_of_breath"
+      ],
+      "common": [
+        "cold_sweat",
+        "arm_pain",
+        "jaw_pain",
+        "nausea",
+        "dizziness"
+      ],
+      "rare": [
+        "confusion"
+      ]
+    },
+    "severity": "Urgent",
+    "risk_modifiers": {
+      "age": {
+        "gte_55": 1.15,
+        "gte_65": 1.2
+      },
+      "gender": {
+        "male": 1.1
+      }
+    },
+    "treatment": [
+      "Call emergency services immediately",
+      "Chew aspirin only if not contraindicated and advised",
+      "Stay resting until help arrives"
+    ]
+  },
+  {
+    "id": "migraine",
+    "name": "Migraine Headache",
+    "symptoms": {
+      "required": [
+        "headache",
+        "nausea"
+      ],
+      "common": [
+        "photosensitivity",
+        "aura",
+        "dizziness"
+      ],
+      "rare": [
+        "vomiting"
+      ]
+    },
+    "severity": "Moderate",
+    "risk_modifiers": {
+      "age": {
+        "lte_50": 1.06
+      },
+      "gender": {
+        "female": 1.12
+      }
+    },
+    "treatment": [
+      "Dark quiet room",
+      "Hydration",
+      "Discuss triptans/preventives with clinician",
+      "Seek urgent care for thunderclap or first-worst headache"
+    ]
+  },
+  {
+    "id": "tension_headache",
+    "name": "Tension-Type Headache",
+    "symptoms": {
+      "required": [
+        "headache"
+      ],
+      "common": [
+        "fatigue",
+        "neck_tension"
+      ],
+      "rare": [
+        "nausea"
+      ]
+    },
+    "severity": "Minor",
+    "risk_modifiers": {
+      "age": {},
+      "gender": {}
+    },
+    "treatment": [
+      "Stress reduction",
+      "Stretching",
+      "OTC analgesics short-term if safe",
+      "Evaluate if daily headaches"
+    ]
+  },
+  {
+    "id": "meningitis",
+    "name": "Meningitis (Emergency Possible)",
+    "symptoms": {
+      "required": [
+        "fever",
+        "stiff_neck"
+      ],
+      "common": [
+        "severe_headache",
+        "confusion",
+        "photosensitivity",
+        "nausea",
+        "rash"
+      ],
+      "rare": [
+        "vomiting"
+      ]
+    },
+    "severity": "Urgent",
+    "risk_modifiers": {
+      "age": {
+        "lte_5": 1.2,
+        "gte_65": 1.2
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "Emergency evaluation immediately",
+      "Do not delay for any home remedy"
+    ]
+  },
+  {
+    "id": "diabetes_mellitus_type2",
+    "name": "Type 2 Diabetes Mellitus (Pattern)",
+    "symptoms": {
+      "required": [
+        "thirst",
+        "frequent_urination"
+      ],
+      "common": [
+        "fatigue",
+        "blurred_vision",
+        "weight_loss"
+      ],
+      "rare": [
+        "slow_healing"
+      ]
+    },
+    "severity": "Moderate",
+    "risk_modifiers": {
+      "age": {
+        "gte_45": 1.15
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "HbA1c testing with clinician",
+      "Diet and activity counseling",
+      "Medication only under medical supervision"
+    ]
+  },
+  {
+    "id": "hypothyroidism",
+    "name": "Hypothyroidism (Pattern)",
+    "symptoms": {
+      "required": [
+        "fatigue",
+        "cold_intolerance"
+      ],
+      "common": [
+        "weight_gain",
+        "constipation",
+        "hair_loss",
+        "dry_skin"
+      ],
+      "rare": []
+    },
+    "severity": "Minor",
+    "risk_modifiers": {
+      "age": {
+        "gte_30": 1.08
+      },
+      "gender": {
+        "female": 1.12
+      }
+    },
+    "treatment": [
+      "Thyroid labs with clinician",
+      "Levothyroxine if prescribed \u2014 dosing requires monitoring"
+    ]
+  },
+  {
+    "id": "uti",
+    "name": "Urinary Tract Infection",
+    "symptoms": {
+      "required": [
+        "painful_urination",
+        "frequent_urination"
+      ],
+      "common": [
+        "fever",
+        "abdominal_pain",
+        "fatigue",
+        "flank_pain"
+      ],
+      "rare": [
+        "blood_in_urine"
+      ]
+    },
+    "severity": "Moderate",
+    "risk_modifiers": {
+      "age": {
+        "gte_65": 1.1
+      },
+      "gender": {
+        "female": 1.12
+      }
+    },
+    "treatment": [
+      "Urinalysis/culture",
+      "Antibiotics only if prescribed",
+      "Increase fluids",
+      "Seek care if fever and flank pain (possible kidney infection)"
+    ]
+  },
+  {
+    "id": "kidney_stone",
+    "name": "Kidney Stone (Renal Colic)",
+    "symptoms": {
+      "required": [
+        "flank_pain"
+      ],
+      "common": [
+        "nausea",
+        "vomiting",
+        "blood_in_urine",
+        "frequent_urination"
+      ],
+      "rare": [
+        "fever"
+      ]
+    },
+    "severity": "Urgent",
+    "risk_modifiers": {
+      "age": {
+        "gte_25": 1.05
+      },
+      "gender": {
+        "male": 1.08
+      }
+    },
+    "treatment": [
+      "Hydration as tolerated",
+      "Pain management per clinician",
+      "Emergency care if fever with stone symptoms (infection risk)"
+    ]
+  },
+  {
+    "id": "anemia_iron",
+    "name": "Iron-Deficiency Anemia (Pattern)",
+    "symptoms": {
+      "required": [
+        "fatigue",
+        "pale_skin"
+      ],
+      "common": [
+        "dizziness",
+        "shortness_of_breath",
+        "cold_intolerance"
+      ],
+      "rare": [
+        "brittle_nails"
+      ]
+    },
+    "severity": "Moderate",
+    "risk_modifiers": {
+      "age": {},
+      "gender": {
+        "female": 1.1
+      }
+    },
+    "treatment": [
+      "Blood work with clinician",
+      "Treat underlying cause of blood loss",
+      "Iron supplements only if advised and monitored"
+    ]
+  },
+  {
+    "id": "dehydration",
+    "name": "Dehydration",
+    "symptoms": {
+      "required": [
+        "dehydration"
+      ],
+      "common": [
+        "dizziness",
+        "fatigue",
+        "dry_skin",
+        "thirst"
+      ],
+      "rare": [
+        "confusion"
+      ]
+    },
+    "severity": "Moderate",
+    "risk_modifiers": {
+      "age": {
+        "lte_5": 1.2,
+        "gte_65": 1.2
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "Oral rehydration",
+      "Electrolyte solutions",
+      "Seek urgent care if confusion, minimal urination, or inability to drink"
+    ]
+  },
+  {
+    "id": "chickenpox",
+    "name": "Chickenpox (Varicella)",
+    "symptoms": {
+      "required": [
+        "fever",
+        "itchy_blisters"
+      ],
+      "common": [
+        "fatigue",
+        "headache",
+        "rash"
+      ],
+      "rare": [
+        "sore_throat"
+      ]
+    },
+    "severity": "Moderate",
+    "risk_modifiers": {
+      "age": {
+        "lte_12": 1.1,
+        "gte_18": 1.1
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "Avoid scratching",
+      "Antihistamines for itch if appropriate",
+      "Isolate",
+      "High-risk groups should seek clinician guidance"
+    ]
+  },
+  {
+    "id": "measles",
+    "name": "Measles (Possible)",
+    "symptoms": {
+      "required": [
+        "fever",
+        "rash"
+      ],
+      "common": [
+        "cough",
+        "runny_nose",
+        "conjunctivitis_red_eyes",
+        "koplik_spots"
+      ],
+      "rare": [
+        "photosensitivity"
+      ]
+    },
+    "severity": "Urgent",
+    "risk_modifiers": {
+      "age": {
+        "lte_5": 1.2
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "Isolation and public health notification per guidance",
+      "Medical evaluation",
+      "Supportive care \u2014 complications need hospital care"
+    ]
+  },
+  {
+    "id": "eczema_atopic",
+    "name": "Atopic Dermatitis (Eczema)",
+    "symptoms": {
+      "required": [
+        "dry_skin",
+        "itching"
+      ],
+      "common": [
+        "rash",
+        "skin_cracking"
+      ],
+      "rare": [
+        "infection_signs"
+      ]
+    },
+    "severity": "Minor",
+    "risk_modifiers": {
+      "age": {
+        "lte_12": 1.08
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "Emollients frequently",
+      "Avoid harsh soaps",
+      "Topical steroids as prescribed",
+      "Flares with signs of infection need review"
+    ]
+  },
+  {
+    "id": "allergic_reaction",
+    "name": "Allergic Reaction / Urticaria",
+    "symptoms": {
+      "required": [
+        "hives",
+        "itching"
+      ],
+      "common": [
+        "rash",
+        "swelling_lips_face"
+      ],
+      "rare": [
+        "shortness_of_breath",
+        "dizziness"
+      ]
+    },
+    "severity": "Moderate",
+    "risk_modifiers": {
+      "age": {},
+      "gender": {}
+    },
+    "treatment": [
+      "Antihistamines if mild and previously tolerated",
+      "Epinephrine and emergency care if airway symptoms or widespread reaction"
+    ]
+  },
+  {
+    "id": "dengue_fever",
+    "name": "Dengue Fever (Travel / Endemic Exposure)",
+    "symptoms": {
+      "required": [
+        "fever",
+        "muscle_aches"
+      ],
+      "common": [
+        "retro_orbital_pain",
+        "rash",
+        "nausea",
+        "fatigue",
+        "petechiae"
+      ],
+      "rare": [
+        "abdominal_pain"
+      ]
+    },
+    "severity": "Urgent",
+    "risk_modifiers": {
+      "age": {},
+      "gender": {}
+    },
+    "treatment": [
+      "Seek medical evaluation in endemic areas or after travel",
+      "Avoid NSAIDs unless clinician advises",
+      "Watch for warning signs of severe dengue"
+    ]
+  },
+  {
+    "id": "malaria",
+    "name": "Malaria (Travel / Endemic Exposure)",
+    "symptoms": {
+      "required": [
+        "fever",
+        "chills"
+      ],
+      "common": [
+        "malaria_paroxysm",
+        "sweats",
+        "headache",
+        "nausea",
+        "muscle_aches"
+      ],
+      "rare": [
+        "confusion"
+      ]
+    },
+    "severity": "Urgent",
+    "risk_modifiers": {
+      "age": {
+        "lte_5": 1.2
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "Emergency diagnosis and antimalarials under medical supervision",
+      "This is not self-treatable"
+    ]
+  },
+  {
+    "id": "panic_attack",
+    "name": "Panic Attack (Possible)",
+    "symptoms": {
+      "required": [
+        "palpitations",
+        "shortness_of_breath"
+      ],
+      "common": [
+        "chest_pain",
+        "dizziness",
+        "cold_sweat",
+        "nausea"
+      ],
+      "rare": [
+        "tingling"
+      ]
+    },
+    "severity": "Moderate",
+    "risk_modifiers": {
+      "age": {
+        "lte_40": 1.08
+      },
+      "gender": {
+        "female": 1.06
+      }
+    },
+    "treatment": [
+      "Slow breathing techniques",
+      "Rule out cardiac causes for first episode or atypical features",
+      "Therapy and clinician-guided management"
+    ]
+  },
+  {
+    "id": "pneumonia_viral",
+    "name": "Viral Pneumonitis (Pattern)",
+    "symptoms": {
+      "required": [
+        "cough",
+        "fatigue"
+      ],
+      "common": [
+        "fever",
+        "shortness_of_breath",
+        "muscle_aches"
+      ],
+      "rare": [
+        "chest_pain"
+      ]
+    },
+    "severity": "Moderate",
+    "risk_modifiers": {
+      "age": {
+        "gte_65": 1.2
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "Rest",
+      "Hydration",
+      "Medical assessment if oxygen low or symptoms worsen"
+    ]
+  },
+  {
+    "id": "conjunctivitis",
+    "name": "Conjunctivitis (Pink Eye)",
+    "symptoms": {
+      "required": [
+        "eye_redness",
+        "eye_discharge"
+      ],
+      "common": [
+        "itching",
+        "gritty_feeling"
+      ],
+      "rare": [
+        "fever"
+      ]
+    },
+    "severity": "Minor",
+    "risk_modifiers": {
+      "age": {
+        "lte_15": 1.05
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "Hand hygiene",
+      "Warm compresses",
+      "Avoid contact lenses until resolved",
+      "Clinical differentiation viral vs bacterial"
+    ]
+  },
+  {
+    "id": "gout_flare",
+    "name": "Gout Flare (Pattern)",
+    "symptoms": {
+      "required": [
+        "joint_pain",
+        "joint_swelling_red"
+      ],
+      "common": [
+        "fever",
+        "fatigue"
+      ],
+      "rare": []
+    },
+    "severity": "Moderate",
+    "risk_modifiers": {
+      "age": {
+        "gte_40": 1.1
+      },
+      "gender": {
+        "male": 1.15
+      }
+    },
+    "treatment": [
+      "Rest affected joint",
+      "NSAIDs/colchicine only if prescribed and safe",
+      "Fluid intake",
+      "Long-term urate management with clinician"
+    ]
+  },
+  {
+    "id": "cellulitis",
+    "name": "Cellulitis (Skin Infection Possible)",
+    "symptoms": {
+      "required": [
+        "skin_red_warm_swollen"
+      ],
+      "common": [
+        "fever",
+        "pain_skin"
+      ],
+      "rare": [
+        "chills"
+      ]
+    },
+    "severity": "Urgent",
+    "risk_modifiers": {
+      "age": {
+        "gte_65": 1.15
+      },
+      "gender": {}
+    },
+    "treatment": [
+      "Prompt medical evaluation",
+      "Antibiotics typically required",
+      "Mark borders if advised to monitor spread"
+    ]
+  }
+]

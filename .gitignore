@@ -1,0 +1,17 @@
+# Python env
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# IDE and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Test artifacts
+.pytest_cache/
+
+# Local env files
+.env
