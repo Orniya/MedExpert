@@ -44,6 +44,24 @@ body {
   line-height: 1.45;
 }
 
+/* Force report route to always render with light tokens. */
+body.report-page {
+  --bg: #f3f8ff;
+  --bg-elevated: #ffffff;
+  --text: #14202f;
+  --muted: #5c6f87;
+  --line: #d9e5f4;
+  --brand: #0a6cc6;
+  --brand-strong: #084a8c;
+  --success-bg: #e7f9ef;
+  --success-text: #0f6a35;
+  --warning-bg: #fff7dd;
+  --warning-text: #8b6205;
+  --danger-bg: #ffe8ea;
+  --danger-text: #a21129;
+  --shadow: 0 16px 34px -22px rgba(18, 45, 84, 0.45);
+}
+
 .wrap {
   width: min(1180px, 93vw);
   margin: 0 auto;
